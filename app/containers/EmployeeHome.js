@@ -28,7 +28,34 @@ const styles = StyleSheet.create({
 
 const EmployeeHome = props => {
   return (
-    <>
+    <Row style={styles.row}>
+      <Button block success style={styles.button}>
+        <Text style={styles.text}>REGISTER REFUGEES</Text>
+      </Button>
+      <Button block primary style={styles.button}>
+        <Text>VIEW REFUGEES</Text>
+      </Button>
+      <Button block warning style={styles.button}>
+        <Text>PENDING PROJECTS</Text>
+      </Button>
+      <Button block danger style={styles.button}>
+        <Text>ACCEPTED PROJECTS</Text>
+      </Button>
+    </Row>
+  );
+};
+
+EmployeeHome.navigationOptions = ({ navigation }) => {
+  function onValueChange(value) {
+    switch (value) {
+      case 'logout':
+        navigation.navigate('Login');
+        break;
+    }
+  }
+
+  return {
+    header: (
       <Header>
         <Left />
         <Body>
@@ -40,28 +67,14 @@ const EmployeeHome = props => {
             iosHeader="Menu"
             iosIcon={<Icon name="more" />}
             style={{ width: undefined }}
-            onValueChange={() => {}}
+            onValueChange={onValueChange}
           >
-            <Picker.Item label="Logout" value="key0" />
+            <Picker.Item label="Logout" value="logout" />
           </Picker>
         </Right>
       </Header>
-      <Row style={styles.row}>
-        <Button block success style={styles.button}>
-          <Text style={styles.text}>REGISTER REFUGEES</Text>
-        </Button>
-        <Button block primary style={styles.button}>
-          <Text>VIEW REFUGEES</Text>
-        </Button>
-        <Button block warning style={styles.button}>
-          <Text>PENDING PROJECTS</Text>
-        </Button>
-        <Button block danger style={styles.button}>
-          <Text>ACCEPTED PROJECTS</Text>
-        </Button>
-      </Row>
-    </>
-  );
+    )
+  };
 };
 
 export default EmployeeHome;
