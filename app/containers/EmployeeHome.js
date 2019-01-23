@@ -9,7 +9,8 @@ import {
   Picker,
   Right,
   Row,
-  Text
+  Text,
+  Title
 } from 'native-base';
 
 const styles = StyleSheet.create({
@@ -22,24 +23,30 @@ const styles = StyleSheet.create({
     height: 167
   },
   text: {
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    textAlign: 'center'
   }
 });
 
 const EmployeeHome = props => {
   return (
     <Row style={styles.row}>
-      <Button block success style={styles.button}>
+      <Button
+        block
+        success
+        style={styles.button}
+        onPress={() => props.navigation.navigate('EmployeeRegister')}
+      >
         <Text style={styles.text}>REGISTER REFUGEES</Text>
       </Button>
       <Button block primary style={styles.button}>
-        <Text>VIEW REFUGEES</Text>
+        <Text style={styles.text}>VIEW REFUGEES</Text>
       </Button>
       <Button block warning style={styles.button}>
-        <Text>PENDING PROJECTS</Text>
+        <Text style={styles.text}>PENDING PROJECTS</Text>
       </Button>
       <Button block danger style={styles.button}>
-        <Text>ACCEPTED PROJECTS</Text>
+        <Text style={styles.text}>ACCEPTED PROJECTS</Text>
       </Button>
     </Row>
   );
@@ -59,7 +66,7 @@ EmployeeHome.navigationOptions = ({ navigation }) => {
       <Header>
         <Left />
         <Body>
-          <Text>CRIBDS</Text>
+          <Title>CRIBDS</Title>
         </Body>
         <Right>
           <Picker
