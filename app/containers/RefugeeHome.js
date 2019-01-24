@@ -35,7 +35,7 @@ const RefugeeHome = props => {
         block
         success
         style={styles.button}
-        onPress={() => props.navigation.navigate('CreateProject')}
+        onPress={() => props.navigation.navigate('RefugeeCreate')}
       >
         <Text style={styles.text}>Create Project</Text>
       </Button>
