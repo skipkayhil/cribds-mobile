@@ -10,19 +10,19 @@ import {
   Title
 } from 'native-base';
 
-const CreateProject = props => {
+const RefugeeViewProject = props => {
   return (
     <Button
       full
       success
-      onPress={() => props.navigation.navigate('RefugeeHome')}
+      onPress={() => props.navigation.navigate('RefugeeProjectDetails')}
     >
-      <Text>Submit Project</Text>
+      <Text>Project</Text>
     </Button>
   );
 };
 
-CreateProject.navigationOptions = ({ navigation }) => {
+RefugeeViewProject.navigationOptions = ({ navigation }) => {
   return {
     header: (
       <Header>
@@ -33,7 +33,7 @@ CreateProject.navigationOptions = ({ navigation }) => {
           </Button>
         </Left>
         <Body style={{ flex: 3 }}>
-          <Title>Create Project</Title>
+          <Title>List of projects</Title>
         </Body>
         <Right />
       </Header>
@@ -41,4 +41,4 @@ CreateProject.navigationOptions = ({ navigation }) => {
   };
 };
 
-export default CreateProject;
+export default RefugeeViewProject;

@@ -35,9 +35,25 @@ const RefugeeHome = props => {
         block
         success
         style={styles.button}
+        onPress={() => props.navigation.navigate('RefugeeProfile')}
+      >
+        <Text style={styles.text}>VIEW PROFILE</Text>
+      </Button>
+      <Button
+        block
+        success
+        style={styles.button}
         onPress={() => props.navigation.navigate('RefugeeCreate')}
       >
         <Text style={styles.text}>Create Project</Text>
+      </Button>
+      <Button
+        block
+        success
+        style={styles.button}
+        onPress={() => props.navigation.navigate('RefugeeProject')}
+      >
+        <Text style={styles.text}>View Projects</Text>
       </Button>
     </Row>
   );

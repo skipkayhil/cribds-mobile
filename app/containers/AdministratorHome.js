@@ -39,14 +39,21 @@ const AdministratorHome = props => {
       >
         <Text style={styles.text}>REGISTER EMPLOYEE</Text>
       </Button>
-      <Button block primary style={styles.button}>
-        <Text style={styles.text}>VIEW REFUGEES</Text>
+      <Button
+        block
+        success
+        style={styles.button}
+        onPress={() => props.navigation.navigate('AdministratorProjects')}
+      >
+        <Text style={styles.text}>LIST PROJECTS</Text>
       </Button>
-      <Button block warning style={styles.button}>
-        <Text style={styles.text}>PENDING PROJECTS</Text>
-      </Button>
-      <Button block danger style={styles.button}>
-        <Text style={styles.text}>ACCEPTED PROJECTS</Text>
+      <Button
+        block
+        success
+        style={styles.button}
+        onPress={() => props.navigation.navigate('AdministratorEmployees')}
+      >
+        <Text style={styles.text}>LIST EMPLOYEES</Text>
       </Button>
     </Row>
   );
