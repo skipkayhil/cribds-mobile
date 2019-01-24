@@ -22,7 +22,7 @@ const CreateProject = props => {
   );
 };
 
-RegisterRefugee.navigationOptions = ({ navigation }) => {
+CreateProject.navigationOptions = ({ navigation }) => {
   return {
     header: (
       <Header>

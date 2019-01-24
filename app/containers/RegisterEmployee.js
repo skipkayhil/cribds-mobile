@@ -22,7 +22,7 @@ const RegisterEmployee = props => {
   );
 };
 
-RegisterRefugee.navigationOptions = ({ navigation }) => {
+RegisterEmployee.navigationOptions = ({ navigation }) => {
   return {
     header: (
       <Header>
