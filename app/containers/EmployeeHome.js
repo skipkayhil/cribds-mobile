@@ -1,87 +1,37 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import {
-  Body,
-  Button,
-  Header,
-  Icon,
-  Left,
-  Picker,
-  Right,
-  Row,
-  Text,
-  Title
-} from 'native-base';
+import { Row } from 'native-base';
+import { NavigationHeader, HomeButton, HeaderPicker } from '../components';
 
 const styles = StyleSheet.create({
   row: {
-    flexWrap: 'wrap'
-  },
-  button: {
-    margin: 10,
-    width: 167,
-    height: 167
-  },
-  text: {
-    fontWeight: 'bold',
-    textAlign: 'center'
+    flexWrap: 'wrap',
+    padding: 5
   }
 });
 
 const EmployeeHome = props => {
   return (
     <Row style={styles.row}>
-      <Button
-        block
+      <HomeButton
         success
-        style={styles.button}
+        text="REGISTER REFUGEES"
         onPress={() => props.navigation.navigate('EmployeeRegister')}
-      >
-        <Text style={styles.text}>REGISTER REFUGEES</Text>
-      </Button>
-      <Button block primary style={styles.button}>
-        <Text style={styles.text}>VIEW REFUGEES</Text>
-      </Button>
-      <Button block warning style={styles.button}>
-        <Text style={styles.text}>PENDING PROJECTS</Text>
-      </Button>
-      <Button block danger style={styles.button}>
-        <Text style={styles.text}>ACCEPTED PROJECTS</Text>
-      </Button>
+      />
+      <HomeButton primary text="VIEW REFUGEES" />
+      <HomeButton warning text="PENDING PROJECTS" />
+      <HomeButton danger text="ACCEPTED PROJECTS" />
     </Row>
   );
 };
 
-EmployeeHome.navigationOptions = ({ navigation }) => {
-  function onValueChange(value) {
-    switch (value) {
-      case 'logout':
-        navigation.navigate('Login');
-        break;
-    }
-  }
-
-  return {
-    header: (
-      <Header>
-        <Left />
-        <Body>
-          <Title>CRIBDS</Title>
-        </Body>
-        <Right>
-          <Picker
-            mode="dropdown"
-            iosHeader="Menu"
-            iosIcon={<Icon name="more" />}
-            style={{ width: undefined }}
-            onValueChange={onValueChange}
-          >
-            <Picker.Item label="Logout" value="logout" />
-          </Picker>
-        </Right>
-      </Header>
-    )
-  };
-};
+EmployeeHome.navigationOptions = ({ navigation }) => ({
+  header: (
+    <NavigationHeader
+      title="CRIBDS"
+      right={<HeaderPicker navigation={navigation} />}
+    />
+  )
+});
 
 export default EmployeeHome;

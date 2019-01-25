@@ -1,14 +1,6 @@
 import React from 'react';
-import {
-  Body,
-  Button,
-  Header,
-  Icon,
-  Left,
-  Right,
-  Text,
-  Title
-} from 'native-base';
+import { Button, Text } from 'native-base';
+import { NavigationHeader, BackButton } from '../components';
 
 const AdministratorViewProject = props => {
   return (
@@ -16,11 +8,11 @@ const AdministratorViewProject = props => {
       <Text> Title: </Text>
       <Text> My Project </Text>
       <Text> Created by: </Text>
-      <Text>  John Doe </Text>
+      <Text> John Doe </Text>
       <Text> Project Status: </Text>
-      <Text>  Pending/Accepted/Rejected(reason for rejection) </Text>
+      <Text> Pending/Accepted/Rejected(reason for rejection) </Text>
       <Text> Location: </Text>
-      <Text>  Camp A </Text>
+      <Text> Camp A </Text>
       <Text> Details: </Text>
       <Text> Here's the relevant information </Text>
       <Text> Contact info: </Text>
@@ -35,23 +27,13 @@ const AdministratorViewProject = props => {
   );
 };
 
-AdministratorViewProject.navigationOptions = ({ navigation }) => {
-  return {
-    header: (
-      <Header>
-        <Left>
-          <Button transparent onPress={() => navigation.goBack()}>
-            <Icon name="arrow-back" />
-            <Text>Back</Text>
-          </Button>
-        </Left>
-        <Body style={{ flex: 3 }}>
-          <Title>Details of project</Title>
-        </Body>
-        <Right />
-      </Header>
-    )
-  };
-};
+AdministratorViewProject.navigationOptions = ({ navigation }) => ({
+  header: (
+    <NavigationHeader
+      title="Project Details"
+      left={<BackButton navigation={navigation} />}
+    />
+  )
+});
 
 export default AdministratorViewProject;

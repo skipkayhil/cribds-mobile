@@ -1,14 +1,6 @@
 import React from 'react';
-import {
-  Body,
-  Button,
-  Header,
-  Icon,
-  Left,
-  Right,
-  Text,
-  Title
-} from 'native-base';
+import { Button, Text } from 'native-base';
+import { BackButton, NavigationHeader } from '../components';
 
 const SelfRefugeeProfile = props => {
   return (
@@ -16,7 +8,7 @@ const SelfRefugeeProfile = props => {
       <Text> Name: </Text>
       <Text> John Doe </Text>
       <Text> ID: </Text>
-      <Text>  ID goes here </Text>
+      <Text> ID goes here </Text>
       <Text> Email: </Text>
       <Text> refugee@email.here </Text>
       <Text> Phone #: </Text>
@@ -32,23 +24,13 @@ const SelfRefugeeProfile = props => {
   );
 };
 
-SelfRefugeeProfile.navigationOptions = ({ navigation }) => {
-  return {
-    header: (
-      <Header>
-        <Left>
-          <Button transparent onPress={() => navigation.goBack()}>
-            <Icon name="arrow-back" />
-            <Text>Back</Text>
-          </Button>
-        </Left>
-        <Body style={{ flex: 3 }}>
-          <Title>Profile</Title>
-        </Body>
-        <Right />
-      </Header>
-    )
-  };
-};
+SelfRefugeeProfile.navigationOptions = ({ navigation }) => ({
+  header: (
+    <NavigationHeader
+      title="Profile"
+      left={<BackButton navigation={navigation} />}
+    />
+  )
+});
 
 export default SelfRefugeeProfile;
