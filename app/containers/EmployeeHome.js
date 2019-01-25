@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
-import { Icon, Picker, Row } from 'native-base';
-import { NavigationHeader, HomeButton } from '../components';
+import { Row } from 'native-base';
+import { NavigationHeader, HomeButton, HeaderPicker } from '../components';
 
 const styles = StyleSheet.create({
   row: {
@@ -25,30 +25,13 @@ const EmployeeHome = props => {
   );
 };
 
-EmployeeHome.navigationOptions = ({ navigation }) => {
-  function onValueChange(value) {
-    switch (value) {
-      case 'logout':
-        navigation.navigate('Login');
-        break;
-    }
-  }
-
-  const right = (
-    <Picker
-      mode="dropdown"
-      iosHeader="Menu"
-      iosIcon={<Icon name="more" />}
-      style={{ width: undefined }}
-      onValueChange={onValueChange}
-    >
-      <Picker.Item label="Logout" value="logout" />
-    </Picker>
-  );
-
-  return {
-    header: <NavigationHeader title="CRIBDS" right={right} />
-  };
-};
+EmployeeHome.navigationOptions = ({ navigation }) => ({
+  header: (
+    <NavigationHeader
+      title="CRIBDS"
+      right={<HeaderPicker navigation={navigation} />}
+    />
+  )
+});
 
 export default EmployeeHome;
