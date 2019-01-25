@@ -1,14 +1,6 @@
 import React from 'react';
-import {
-  Body,
-  Button,
-  Header,
-  Icon,
-  Left,
-  Right,
-  Text,
-  Title
-} from 'native-base';
+import { Button, Text } from 'native-base';
+import { BackButton, NavigationHeader } from '../components';
 
 const RefugeeViewProject = props => {
   return (
@@ -22,23 +14,13 @@ const RefugeeViewProject = props => {
   );
 };
 
-RefugeeViewProject.navigationOptions = ({ navigation }) => {
-  return {
-    header: (
-      <Header>
-        <Left>
-          <Button transparent onPress={() => navigation.goBack()}>
-            <Icon name="arrow-back" />
-            <Text>Back</Text>
-          </Button>
-        </Left>
-        <Body style={{ flex: 3 }}>
-          <Title>List of projects</Title>
-        </Body>
-        <Right />
-      </Header>
-    )
-  };
-};
+RefugeeViewProject.navigationOptions = ({ navigation }) => ({
+  header: (
+    <NavigationHeader
+      title="Project List"
+      left={<BackButton navigation={navigation} />}
+    />
+  )
+});
 
 export default RefugeeViewProject;

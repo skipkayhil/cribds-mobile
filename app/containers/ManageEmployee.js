@@ -1,27 +1,27 @@
 import React from 'react';
-import {
-  Body,
-  Button,
-  Header,
-  Icon,
-  Left,
-  Right,
-  Text,
-  Title
-} from 'native-base';
-import {TextInput} from 'react-native';
+import { Button, Text } from 'native-base';
+import { TextInput } from 'react-native';
+import { BackButton, NavigationHeader } from '../components';
 
 const ManageEmployee = props => {
   return (
     <React.Fragment>
       <Text> Name: </Text>
-      <TextInput style={{borderColor: 'gray', borderWidth: 1}}> Employee Name </TextInput>
+      <TextInput style={{ borderColor: 'gray', borderWidth: 1 }}>
+        Employee Name
+      </TextInput>
       <Text> Password: </Text>
-      <TextInput style={{borderColor: 'gray', borderWidth: 1}}> **** </TextInput>
+      <TextInput style={{ borderColor: 'gray', borderWidth: 1 }}>
+        ****
+      </TextInput>
       <Text> Email: </Text>
-      <TextInput style={{borderColor: 'gray', borderWidth: 1}}> employee@email.here </TextInput>
+      <TextInput style={{ borderColor: 'gray', borderWidth: 1 }}>
+        employee@email.here
+      </TextInput>
       <Text> Phone #: </Text>
-      <TextInput style={{borderColor: 'gray', borderWidth: 1}}> ***-***-**** </TextInput>
+      <TextInput style={{ borderColor: 'gray', borderWidth: 1 }}>
+        ***-***-****
+      </TextInput>
       <Button
         full
         success
@@ -39,23 +39,13 @@ const ManageEmployee = props => {
   );
 };
 
-ManageEmployee.navigationOptions = ({ navigation }) => {
-  return {
-    header: (
-      <Header>
-        <Left>
-          <Button transparent onPress={() => navigation.goBack()}>
-            <Icon name="arrow-back" />
-            <Text>Back</Text>
-          </Button>
-        </Left>
-        <Body style={{ flex: 3 }}>
-          <Title>Employee Name goes here</Title>
-        </Body>
-        <Right />
-      </Header>
-    )
-  };
-};
+ManageEmployee.navigationOptions = ({ navigation }) => ({
+  header: (
+    <NavigationHeader
+      title="Employee Name"
+      left={<BackButton navigation={navigation} />}
+    />
+  )
+});
 
 export default ManageEmployee;

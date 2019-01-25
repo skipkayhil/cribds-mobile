@@ -1,14 +1,6 @@
 import React from 'react';
-import {
-  Body,
-  Button,
-  Header,
-  Icon,
-  Left,
-  Right,
-  Text,
-  Title
-} from 'native-base';
+import { Button, Text } from 'native-base';
+import { NavigationHeader, BackButton } from '../components';
 
 const AdministrateProjects = props => {
   return (
@@ -22,23 +14,13 @@ const AdministrateProjects = props => {
   );
 };
 
-AdministrateProjects.navigationOptions = ({ navigation }) => {
-  return {
-    header: (
-      <Header>
-        <Left>
-          <Button transparent onPress={() => navigation.goBack()}>
-            <Icon name="arrow-back" />
-            <Text>Back</Text>
-          </Button>
-        </Left>
-        <Body style={{ flex: 3 }}>
-          <Title>Accepted Projects List</Title>
-        </Body>
-        <Right />
-      </Header>
-    )
-  };
-};
+AdministrateProjects.navigationOptions = ({ navigation }) => ({
+  header: (
+    <NavigationHeader
+      title="Accepted Projects List"
+      left={<BackButton navigation={navigation} />}
+    />
+  )
+});
 
 export default AdministrateProjects;
