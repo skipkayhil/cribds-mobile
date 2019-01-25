@@ -17,7 +17,7 @@ const RefugeeViewProject = props => {
       success
       onPress={() => props.navigation.navigate('RefugeeProjectDetails')}
     >
-      <Text>Project</Text>
+      <Text>Project [Project Status]</Text>
     </Button>
   );
 };

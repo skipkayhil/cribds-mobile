@@ -12,8 +12,12 @@ import {
 
 const AdministrateProjects = props => {
   return (
-    <Button>
-      <Text>Action</Text>
+    <Button
+      full
+      success
+      onPress={() => props.navigation.navigate('AdministrateProjectDetail')}
+    >
+      <Text>Project [Camp]</Text>
     </Button>
   );
 };

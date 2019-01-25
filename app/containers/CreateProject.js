@@ -9,16 +9,29 @@ import {
   Text,
   Title
 } from 'native-base';
+import {TextInput} from 'react-native';
 
 const CreateProject = props => {
   return (
-    <Button
-      full
-      success
-      onPress={() => props.navigation.navigate('RefugeeHome')}
-    >
-      <Text>Submit Project</Text>
-    </Button>
+    <React.Fragment>
+      <Text> Title: </Text>
+      <TextInput style={{borderColor: 'gray', borderWidth: 1}}> My Project </TextInput>
+      <Text> Created by: </Text>
+      <TextInput style={{borderColor: 'gray', borderWidth: 1}}>  John Doe </TextInput>
+      <Text> Location: </Text>
+      <TextInput style={{borderColor: 'gray', borderWidth: 1}}>  Camp A </TextInput>
+      <Text> Details: </Text>
+      <TextInput style={{borderColor: 'gray', borderWidth: 1}}> Here's the relevant information </TextInput>
+      <Text> Contact info: </Text>
+      <TextInput style={{borderColor: 'gray', borderWidth: 1}}> Phone Number or Email or something </TextInput>
+      <Button
+        full
+        success
+        onPress={() => props.navigation.navigate('RefugeeHome')}
+      >
+        <Text>Submit Project (not implemented yet)</Text>
+      </Button>
+    </React.Fragment>
   );
 };
 

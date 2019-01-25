@@ -11,7 +11,7 @@ import {
 } from 'native-base';
 import {TextInput} from 'react-native';
 
-const RegisterEmployee = props => {
+const ManageEmployee = props => {
   return (
     <React.Fragment>
       <Text> Name: </Text>
@@ -27,13 +27,19 @@ const RegisterEmployee = props => {
         success
         onPress={() => props.navigation.navigate('AdministratorHome')}
       >
-        <Text>Submit (Not implemented yet)</Text>
+        <Text>Submit Changes (Not implemented yet)</Text>
+      </Button>
+      <Button
+        success
+        onPress={() => props.navigation.navigate('AdministratorHome')}
+      >
+        <Text>Delete Employee (Not implemented yet)</Text>
       </Button>
     </React.Fragment>
   );
 };
 
-RegisterEmployee.navigationOptions = ({ navigation }) => {
+ManageEmployee.navigationOptions = ({ navigation }) => {
   return {
     header: (
       <Header>
@@ -44,7 +50,7 @@ RegisterEmployee.navigationOptions = ({ navigation }) => {
           </Button>
         </Left>
         <Body style={{ flex: 3 }}>
-          <Title>Register Employee</Title>
+          <Title>Employee Name goes here</Title>
         </Body>
         <Right />
       </Header>
@@ -52,4 +58,4 @@ RegisterEmployee.navigationOptions = ({ navigation }) => {
   };
 };
 
-export default RegisterEmployee;
+export default ManageEmployee;

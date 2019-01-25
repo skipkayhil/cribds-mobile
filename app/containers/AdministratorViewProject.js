@@ -10,7 +10,7 @@ import {
   Title
 } from 'native-base';
 
-const RefugeeViewProjectDetails = props => {
+const AdministratorViewProject = props => {
   return (
     <React.Fragment>
       <Text> Title: </Text>
@@ -25,11 +25,17 @@ const RefugeeViewProjectDetails = props => {
       <Text> Here's the relevant information </Text>
       <Text> Contact info: </Text>
       <Text> Phone Number or Email or something </Text>
+      <Button
+        success
+        onPress={() => props.navigation.navigate('AdministratorHome')}
+      >
+        <Text>Delete Project (Not implemented yet)</Text>
+      </Button>
     </React.Fragment>
   );
 };
 
-RefugeeViewProjectDetails.navigationOptions = ({ navigation }) => {
+AdministratorViewProject.navigationOptions = ({ navigation }) => {
   return {
     header: (
       <Header>
@@ -48,4 +54,4 @@ RefugeeViewProjectDetails.navigationOptions = ({ navigation }) => {
   };
 };
 
-export default RefugeeViewProjectDetails;
+export default AdministratorViewProject;
