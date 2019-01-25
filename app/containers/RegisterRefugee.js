@@ -1,14 +1,6 @@
 import React from 'react';
-import {
-  Body,
-  Button,
-  Header,
-  Icon,
-  Left,
-  Right,
-  Text,
-  Title
-} from 'native-base';
+import { Button, Text } from 'native-base';
+import { BackButton, NavigationHeader } from '../components';
 
 const RegisterRefugee = props => {
   return (
@@ -22,23 +14,13 @@ const RegisterRefugee = props => {
   );
 };
 
-RegisterRefugee.navigationOptions = ({ navigation }) => {
-  return {
-    header: (
-      <Header>
-        <Left>
-          <Button transparent onPress={() => navigation.goBack()}>
-            <Icon name="arrow-back" />
-            <Text>Back</Text>
-          </Button>
-        </Left>
-        <Body style={{ flex: 3 }}>
-          <Title>Register Refugee</Title>
-        </Body>
-        <Right />
-      </Header>
-    )
-  };
-};
+RegisterRefugee.navigationOptions = ({ navigation }) => ({
+  header: (
+    <NavigationHeader
+      left={<BackButton navigation={navigation} />}
+      title="Register Refugee"
+    />
+  )
+});
 
 export default RegisterRefugee;
