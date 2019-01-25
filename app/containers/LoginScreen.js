@@ -17,8 +17,11 @@ const LoginScreen = props => {
       <Button full onPress={() => props.navigation.navigate('Employee')}>
         <Text>HSS Employee</Text>
       </Button>
-      <Button full>
+      <Button full onPress={() => props.navigation.navigate('Refugee')}>
         <Text>Refugee</Text>
+      </Button>
+      <Button full onPress={() => props.navigation.navigate('Admin')}>
+        <Text>Administrator</Text>
       </Button>
     </Container>
   );

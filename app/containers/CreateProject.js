@@ -1,0 +1,57 @@
+import React from 'react';
+import {
+  Body,
+  Button,
+  Header,
+  Icon,
+  Left,
+  Right,
+  Text,
+  Title
+} from 'native-base';
+import {TextInput} from 'react-native';
+
+const CreateProject = props => {
+  return (
+    <React.Fragment>
+      <Text> Title: </Text>
+      <TextInput style={{borderColor: 'gray', borderWidth: 1}}> My Project </TextInput>
+      <Text> Created by: </Text>
+      <TextInput style={{borderColor: 'gray', borderWidth: 1}}>  John Doe </TextInput>
+      <Text> Location: </Text>
+      <TextInput style={{borderColor: 'gray', borderWidth: 1}}>  Camp A </TextInput>
+      <Text> Details: </Text>
+      <TextInput style={{borderColor: 'gray', borderWidth: 1}}> Here's the relevant information </TextInput>
+      <Text> Contact info: </Text>
+      <TextInput style={{borderColor: 'gray', borderWidth: 1}}> Phone Number or Email or something </TextInput>
+      <Button
+        full
+        success
+        onPress={() => props.navigation.navigate('RefugeeHome')}
+      >
+        <Text>Submit Project (not implemented yet)</Text>
+      </Button>
+    </React.Fragment>
+  );
+};
+
+CreateProject.navigationOptions = ({ navigation }) => {
+  return {
+    header: (
+      <Header>
+        <Left>
+          <Button transparent onPress={() => navigation.goBack()}>
+            <Icon name="arrow-back" />
+            <Text>Back</Text>
+          </Button>
+        </Left>
+        <Body style={{ flex: 3 }}>
+          <Title>Create Project</Title>
+        </Body>
+        <Right />
+      </Header>
+    )
+  };
+};
+
+export default CreateProject;
