@@ -2,12 +2,16 @@ import React from 'react';
 import { createSwitchNavigator, createAppContainer } from 'react-navigation';
 import LoginScreen from './app/containers/LoginScreen';
 import EmployeeNavigator from './app/navigators/EmployeeNavigator';
+import RefugeeNavigator from './app/navigators/RefugeeNavigator';
+import AdministratorNavigator from './app/navigators/AdministratorNavigator';
 
 const AppContainer = createAppContainer(
   createSwitchNavigator(
     {
       Login: LoginScreen,
-      Employee: EmployeeNavigator
+      Employee: EmployeeNavigator,
+      Refugee: RefugeeNavigator,
+      Admin: AdministratorNavigator
     },
     {
       initialRouteName: 'Login'
