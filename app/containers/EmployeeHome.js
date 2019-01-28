@@ -10,17 +10,29 @@ const styles = StyleSheet.create({
   }
 });
 
-const EmployeeHome = props => {
+const EmployeeHome = ({ navigation, ...props }) => {
   return (
     <Row style={styles.row}>
       <HomeButton
         success
         text="REGISTER REFUGEES"
-        onPress={() => props.navigation.navigate('EmployeeRegister')}
+        onPress={() => navigation.navigate('EmployeeRegister')}
       />
-      <HomeButton primary text="VIEW REFUGEES" />
-      <HomeButton warning text="PENDING PROJECTS" />
-      <HomeButton danger text="ACCEPTED PROJECTS" />
+      <HomeButton
+        primary
+        text="VIEW REFUGEES"
+        onPress={() => navigation.navigate('EmployeeRefugees')}
+      />
+      <HomeButton
+        warning
+        text="PENDING PROJECTS"
+        onPress={() => navigation.navigate('EmployeePending')}
+      />
+      <HomeButton
+        danger
+        text="ACCEPTED PROJECTS"
+        onPress={() => navigation.navigate('EmployeeAccepted')}
+      />
     </Row>
   );
 };
