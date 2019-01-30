@@ -19,7 +19,6 @@ const EmployeeHome = ({ navigation, ...props }) => {
         onPress={() => navigation.navigate('EmployeeRegister')}
       />
       <HomeButton
-        primary
         text="VIEW REFUGEES"
         onPress={() => navigation.navigate('EmployeeRefugees')}
       />

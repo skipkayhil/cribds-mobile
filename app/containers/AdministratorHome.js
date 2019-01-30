@@ -19,14 +19,13 @@ const AdministratorHome = props => {
         onPress={() => props.navigation.navigate('AdministratorRegister')}
       />
       <HomeButton
-        success
-        text="LIST PROJECTS"
-        onPress={() => props.navigation.navigate('AdministratorProjects')}
-      />
-      <HomeButton
-        success
         text="LIST EMPLOYEES"
         onPress={() => props.navigation.navigate('AdministratorEmployees')}
+      />
+      <HomeButton
+        warning
+        text="LIST PROJECTS"
+        onPress={() => props.navigation.navigate('AdministratorProjects')}
       />
     </Row>
   );
