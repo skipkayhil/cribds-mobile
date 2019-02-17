@@ -3,7 +3,7 @@ import { Button, Text } from 'native-base';
 import { TextInput } from 'react-native';
 import { BackButton, NavigationHeader } from '../components';
 
-const SelfRefugeeProfile = props => {
+const RefugeeProfileEdit = props => {
   return (
     <React.Fragment>
       <Text> Name: </Text>
@@ -33,7 +33,7 @@ const SelfRefugeeProfile = props => {
   );
 };
 
-SelfRefugeeProfile.navigationOptions = ({ navigation }) => ({
+RefugeeProfileEdit.navigationOptions = ({ navigation }) => ({
   header: (
     <NavigationHeader
       title="Profile"
@@ -42,4 +42,4 @@ SelfRefugeeProfile.navigationOptions = ({ navigation }) => ({
   )
 });
 
-export default SelfRefugeeProfile;
+export default RefugeeProfileEdit;
