@@ -40,12 +40,7 @@ const RefugeeHome = props => {
 };
 
 RefugeeHome.navigationOptions = ({ navigation }) => ({
-  header: (
-    <NavigationHeader
-      title="CRIBDS"
-      right={<HeaderPicker navigation={navigation} />}
-    />
-  )
+  header: <NavigationHeader title="CRIBDS" right={<HeaderPicker />} />
 });
 
 export default RefugeeHome;

@@ -34,12 +34,7 @@ const RegisterEmployee = props => {
 };
 
 RegisterEmployee.navigationOptions = ({ navigation }) => ({
-  header: (
-    <NavigationHeader
-      title="Register Employee"
-      left={<BackButton navigation={navigation} />}
-    />
-  )
+  header: <NavigationHeader title="Register Employee" left={<BackButton />} />
 });
 
 export default RegisterEmployee;

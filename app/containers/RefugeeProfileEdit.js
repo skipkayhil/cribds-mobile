@@ -34,12 +34,7 @@ const RefugeeProfileEdit = props => {
 };
 
 RefugeeProfileEdit.navigationOptions = ({ navigation }) => ({
-  header: (
-    <NavigationHeader
-      title="Profile"
-      left={<BackButton navigation={navigation} />}
-    />
-  )
+  header: <NavigationHeader title="Profile" left={<BackButton />} />
 });
 
 export default RefugeeProfileEdit;

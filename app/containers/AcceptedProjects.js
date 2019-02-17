@@ -27,12 +27,7 @@ const AcceptedProjects = props => {
 };
 
 AcceptedProjects.navigationOptions = ({ navigation }) => ({
-  header: (
-    <NavigationHeader
-      left={<BackButton navigation={navigation} />}
-      title="Accepted Projects"
-    />
-  )
+  header: <NavigationHeader left={<BackButton />} title="Accepted Projects" />
 });
 
 export default AcceptedProjects;

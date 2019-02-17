@@ -25,12 +25,7 @@ const ViewEmployee = props => {
 };
 
 ViewEmployee.navigationOptions = ({ navigation }) => ({
-  header: (
-    <NavigationHeader
-      title="Employee Name"
-      left={<BackButton navigation={navigation} />}
-    />
-  )
+  header: <NavigationHeader title="Employee Name" left={<BackButton />} />
 });
 
 export default ViewEmployee;

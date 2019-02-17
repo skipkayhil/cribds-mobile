@@ -28,12 +28,7 @@ const RegisterRefugee = props => {
 };
 
 RegisterRefugee.navigationOptions = ({ navigation }) => ({
-  header: (
-    <NavigationHeader
-      left={<BackButton navigation={navigation} />}
-      title="Register Refugee"
-    />
-  )
+  header: <NavigationHeader left={<BackButton />} title="Register Refugee" />
 });
 
 export default RegisterRefugee;

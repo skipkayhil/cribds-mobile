@@ -52,7 +52,7 @@ RefugeeProfile.navigationOptions = ({ navigation }) => ({
   header: (
     <NavigationHeader
       title={`Profile #${navigation.state.params.profile.id}`}
-      left={<BackButton navigation={navigation} />}
+      left={<BackButton />}
     />
   )
 });

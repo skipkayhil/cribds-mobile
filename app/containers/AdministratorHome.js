@@ -32,12 +32,7 @@ const AdministratorHome = props => {
 };
 
 AdministratorHome.navigationOptions = ({ navigation }) => ({
-  header: (
-    <NavigationHeader
-      title="CRIBDS"
-      right={<HeaderPicker navigation={navigation} />}
-    />
-  )
+  header: <NavigationHeader title="CRIBDS" right={<HeaderPicker />} />
 });
 
 export default AdministratorHome;
