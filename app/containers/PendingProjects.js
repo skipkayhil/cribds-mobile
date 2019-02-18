@@ -27,12 +27,7 @@ const PendingProjects = props => {
 };
 
 PendingProjects.navigationOptions = ({ navigation }) => ({
-  header: (
-    <NavigationHeader
-      left={<BackButton navigation={navigation} />}
-      title="Pending Projects"
-    />
-  )
+  header: <NavigationHeader left={<BackButton />} title="Pending Projects" />
 });
 
 export default PendingProjects;

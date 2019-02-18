@@ -38,12 +38,7 @@ const CreateProject = props => {
 };
 
 CreateProject.navigationOptions = ({ navigation }) => ({
-  header: (
-    <NavigationHeader
-      title="Create Project"
-      left={<BackButton navigation={navigation} />}
-    />
-  )
+  header: <NavigationHeader title="Create Project" left={<BackButton />} />
 });
 
 export default CreateProject;

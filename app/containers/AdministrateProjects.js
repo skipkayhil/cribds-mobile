@@ -16,10 +16,7 @@ const AdministrateProjects = props => {
 
 AdministrateProjects.navigationOptions = ({ navigation }) => ({
   header: (
-    <NavigationHeader
-      title="Accepted Projects List"
-      left={<BackButton navigation={navigation} />}
-    />
+    <NavigationHeader title="Accepted Projects List" left={<BackButton />} />
   )
 });
 

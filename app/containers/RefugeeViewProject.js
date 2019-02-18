@@ -15,12 +15,7 @@ const RefugeeViewProject = props => {
 };
 
 RefugeeViewProject.navigationOptions = ({ navigation }) => ({
-  header: (
-    <NavigationHeader
-      title="Project List"
-      left={<BackButton navigation={navigation} />}
-    />
-  )
+  header: <NavigationHeader title="Project List" left={<BackButton />} />
 });
 
 export default RefugeeViewProject;

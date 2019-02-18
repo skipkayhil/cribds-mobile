@@ -16,7 +16,7 @@ const EmployeeHome = ({ navigation, ...props }) => {
       <HomeButton
         success
         text="REGISTER REFUGEES"
-        onPress={() => navigation.navigate('EmployeeRegister')}
+        onPress={() => navigation.navigate('RegisterRefugee')}
       />
       <HomeButton
         text="VIEW REFUGEES"
@@ -37,12 +37,7 @@ const EmployeeHome = ({ navigation, ...props }) => {
 };
 
 EmployeeHome.navigationOptions = ({ navigation }) => ({
-  header: (
-    <NavigationHeader
-      title="CRIBDS"
-      right={<HeaderPicker navigation={navigation} />}
-    />
-  )
+  header: <NavigationHeader title="CRIBDS" right={<HeaderPicker />} />
 });
 
 export default EmployeeHome;

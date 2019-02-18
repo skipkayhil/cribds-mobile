@@ -11,34 +11,44 @@ const styles = StyleSheet.create({
 });
 
 const RefugeeHome = props => {
+  const { navigate } = props.navigation;
+
   return (
     <Row style={styles.row}>
       <HomeButton
         success
-        text="VIEW PROFILE"
-        onPress={() => props.navigation.navigate('RefugeeProfile')}
+        text="MY PROFILE"
+        onPress={() =>
+          navigate('RefugeeProfile', {
+            id: 0
+          })
+        }
       />
       <HomeButton
-        success
+        primary
+        text="OTHER PROFILES"
+        onPress={() =>
+          navigate('ViewRefugees', {
+            id: 0
+          })
+        }
+      />
+      <HomeButton
+        warning
         text="CREATE PROJECT"
-        onPress={() => props.navigation.navigate('RefugeeCreate')}
+        onPress={() => navigate('RefugeeCreate')}
       />
       <HomeButton
-        success
+        danger
         text="VIEW PROJECTS"
-        onPress={() => props.navigation.navigate('RefugeeProject')}
+        onPress={() => navigate('RefugeeProject')}
       />
     </Row>
   );
 };
 
 RefugeeHome.navigationOptions = ({ navigation }) => ({
-  header: (
-    <NavigationHeader
-      title="CRIBDS"
-      right={<HeaderPicker navigation={navigation} />}
-    />
-  )
+  header: <NavigationHeader title="CRIBDS" right={<HeaderPicker />} />
 });
 
 export default RefugeeHome;

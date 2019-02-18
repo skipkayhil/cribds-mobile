@@ -28,12 +28,7 @@ const AdministratorViewProject = props => {
 };
 
 AdministratorViewProject.navigationOptions = ({ navigation }) => ({
-  header: (
-    <NavigationHeader
-      title="Project Details"
-      left={<BackButton navigation={navigation} />}
-    />
-  )
+  header: <NavigationHeader title="Project Details" left={<BackButton />} />
 });
 
 export default AdministratorViewProject;

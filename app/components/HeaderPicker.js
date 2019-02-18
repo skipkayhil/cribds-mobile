@@ -1,5 +1,6 @@
 import React from 'react';
 import { Picker, Icon } from 'native-base';
+import { withNavigation } from 'react-navigation';
 
 const HeaderPicker = ({ ...props }) => {
   function onValueChange(value) {
@@ -28,4 +29,4 @@ const HeaderPicker = ({ ...props }) => {
   );
 };
 
-export default HeaderPicker;
+export default withNavigation(HeaderPicker);

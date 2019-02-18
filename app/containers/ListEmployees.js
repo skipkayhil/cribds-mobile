@@ -16,12 +16,7 @@ const ListEmployees = props => {
 
 ListEmployees.navigationOptions = ({ navigation }) => {
   return {
-    header: (
-      <NavigationHeader
-        title="List of Employees"
-        left={<BackButton navigation={navigation} />}
-      />
-    )
+    header: <NavigationHeader title="List of Employees" left={<BackButton />} />
   };
 };
 

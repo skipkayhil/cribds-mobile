@@ -2,20 +2,20 @@ import { createStackNavigator } from 'react-navigation';
 import RefugeeHome from '../containers/RefugeeHome';
 import CreateProject from '../containers/CreateProject';
 import RefugeeViewProject from '../containers/RefugeeViewProject';
-import SelfRefugeeProfile from '../containers/SelfRefugeeProfile';
+import RefugeeProfile from '../containers/RefugeeProfile';
 import RefugeeViewProjectDetails from '../containers/RefugeeViewProjectDetails';
-import RefugeeEditSelf from '../containers/RefugeeEditSelf';
-
+import RefugeeProfileForm from '../containers/RefugeeProfileForm';
+import ViewRefugees from '../containers/ViewRefugees';
 
 export default createStackNavigator(
   {
     RefugeeHome: RefugeeHome,
     RefugeeProject: RefugeeViewProject,
     RefugeeCreate: CreateProject,
-    RefugeeProfile: SelfRefugeeProfile,
+    RefugeeProfile: RefugeeProfile,
     RefugeeProjectDetails: RefugeeViewProjectDetails,
-    RefugeeEditProf: RefugeeEditSelf
-
+    EditProfile: { screen: RefugeeProfileForm, params: { create: false } },
+    ViewRefugees: ViewRefugees
   },
   {
     initialRouteName: 'RefugeeHome'
