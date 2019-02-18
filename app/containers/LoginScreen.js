@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Alert, Button, TextInput, View, StyleSheet, Picker, Text } from 'react-native';
-import fetcher from '../api/fetcher.js'
+import { Alert, Button, TextInput, View, StyleSheet, Text } from 'react-native';
+import { Picker, Icon } from 'native-base';
+// import fetcher from '../api/fetcher.js'
 
 export default class LoginScreen extends Component {
   constructor(props) {
     super(props);
-    
+
     this.state = {
       username: '',
       password: '',
@@ -13,11 +14,11 @@ export default class LoginScreen extends Component {
       valid: false
     };
   }
-  
+
   onLogin() {
     //eventually call from fetcher file but for now just use the local method
     if (this.loginFetcher()) {
-      this.props.navigation.navigate(this.state.userType, {name: 'Home'});
+      this.props.navigation.navigate(this.state.userType);
     } else {
       //Make better error messages
       Alert.alert('Bad Credentials');
@@ -60,58 +61,56 @@ export default class LoginScreen extends Component {
       }
     }
     */
-    
-    return this.state.username = 'user' && this.state.password == 'pass';
 
-    
-
+    return (this.state.username = 'user' && this.state.password == 'pass');
   }
-  
-
 
   render() {
-    const {navigate} = this.props.navigation;
-
     return (
       <View style={styles.container}>
-      <View style={styles.container3}>
-        <Text style = {{color: 'white', fontSize: 25}}> Cameroon Refugee Application </Text>
-      </View>
-      <View style={styles.container2}>
-        <TextInput
-          value={this.state.username}
-          onChangeText={(username) => this.setState({ username })}
-          placeholder={'Username'}
-          maxLength={20}
-          style={styles.input}
-        />
-        <TextInput
-          value={this.state.password}
-          onChangeText={(password) => this.setState({ password })}
-          placeholder={'Password'}
-          maxLength={20}
-          secureTextEntry={true}
-          style={styles.input}
-        />
+        <View style={styles.container3}>
+          <Text style={{ color: 'white', fontSize: 25 }}>
+            Cameroon Refugee Application
+          </Text>
+        </View>
+        <View style={styles.container2}>
+          <TextInput
+            value={this.state.username}
+            onChangeText={username => this.setState({ username })}
+            placeholder={'Username'}
+            maxLength={20}
+            style={styles.input}
+          />
+          <TextInput
+            value={this.state.password}
+            onChangeText={password => this.setState({ password })}
+            placeholder={'Password'}
+            maxLength={20}
+            secureTextEntry={true}
+            style={styles.input}
+          />
 
-        <Picker
-          selectedValue={this.state.userType}
-          style={{height: 30, width: 200}}
-          onValueChange={(itemValue, itemIndex) =>
-          this.setState({userType: itemValue})
-          }>
-          <Picker.Item label="Refugee" value='Refugee' />
-          <Picker.Item label="Employee" value='Employee' />
-          <Picker.Item label="Admin" value='Admin' />
-        </Picker>
-      </View>
-      <View style = {styles.container3}> 
-      <Button
-          title={'Login'}
-          style={styles.input}
-          onPress={this.onLogin.bind(this)}
-        />
-      </View>
+          <Picker
+            mode="dropdown"
+            iosIcon={<Icon name="arrow-down" />}
+            selectedValue={this.state.userType}
+            style={{ height: 30, width: 200 }}
+            onValueChange={(itemValue, itemIndex) =>
+              this.setState({ userType: itemValue })
+            }
+          >
+            <Picker.Item label="Refugee" value="Refugee" />
+            <Picker.Item label="Employee" value="Employee" />
+            <Picker.Item label="Admin" value="Admin" />
+          </Picker>
+        </View>
+        <View style={styles.container3}>
+          <Button
+            title={'Login'}
+            style={styles.input}
+            onPress={() => this.onLogin()}
+          />
+        </View>
       </View>
     );
   }
@@ -125,22 +124,20 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#9c75f4',
+    backgroundColor: '#9c75f4'
   },
   container2: {
     height: 200,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#ffffff',
-    padding: 50,
-
+    padding: 50
   },
   container3: {
     height: 200,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#9c75f4',
-
+    backgroundColor: '#9c75f4'
   },
   input: {
     width: 200,
@@ -148,7 +145,6 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 1,
     borderColor: 'black',
-    marginBottom: 10,
-
-  },
+    marginBottom: 10
+  }
 });
