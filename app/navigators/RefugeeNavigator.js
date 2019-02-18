@@ -4,7 +4,8 @@ import CreateProject from '../containers/CreateProject';
 import RefugeeViewProject from '../containers/RefugeeViewProject';
 import RefugeeProfile from '../containers/RefugeeProfile';
 import RefugeeViewProjectDetails from '../containers/RefugeeViewProjectDetails';
-import RefugeeProfileEdit from '../containers/RefugeeProfileEdit';
+import RefugeeProfileForm from '../containers/RefugeeProfileForm';
+import ViewRefugees from '../containers/ViewRefugees';
 
 export default createStackNavigator(
   {
@@ -13,7 +14,8 @@ export default createStackNavigator(
     RefugeeCreate: CreateProject,
     RefugeeProfile: RefugeeProfile,
     RefugeeProjectDetails: RefugeeViewProjectDetails,
-    RefugeeEditProf: RefugeeProfileEdit
+    EditProfile: { screen: RefugeeProfileForm, params: { create: false } },
+    ViewRefugees: ViewRefugees
   },
   {
     initialRouteName: 'RefugeeHome'

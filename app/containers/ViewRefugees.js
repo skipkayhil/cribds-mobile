@@ -1,26 +1,26 @@
 import React from 'react';
 import { Button, Content, Icon, List, ListItem, Text } from 'native-base';
 import { NavigationHeader, BackButton } from '../components';
+import { getAll } from '../config/FakeData';
 
 const ViewRefugees = props => {
+  const { id } = props.navigation.state.params || {};
+
   return (
     <Content>
       <List>
-        <ListItem button>
-          <Text>John Smith</Text>
-        </ListItem>
-        <ListItem>
-          <Text>James White</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Jim Brown</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Jack Green</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Jed Black</Text>
-        </ListItem>
+        {getAll()
+          .filter(v => v.id !== id)
+          .map((v, i) => (
+            <ListItem
+              key={i}
+              onPress={() =>
+                props.navigation.navigate('RefugeeProfile', { id: v.id })
+              }
+            >
+              <Text>{v.name}</Text>
+            </ListItem>
+          ))}
       </List>
     </Content>
   );
@@ -34,7 +34,7 @@ ViewRefugees.navigationOptions = ({ navigation }) => ({
           <Icon name="search" />
         </Button>
       }
-      left={<BackButton navigation={navigation} />}
+      left={<BackButton />}
       title="View Refugees"
     />
   )

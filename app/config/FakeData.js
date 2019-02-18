@@ -56,7 +56,7 @@ export function updateRefugee(id, newData) {
 }
 
 export function createRefugee(newData) {
-  data = data.concat(newData);
+  data = data.concat({ ...newData, id: data.length });
 }
 
 export function getRefugee(id) {

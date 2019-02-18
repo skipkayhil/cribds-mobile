@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { Row } from 'native-base';
 import { NavigationHeader, HomeButton, HeaderPicker } from '../components';
-import { getRefugee } from '../config/FakeData';
 
 const styles = StyleSheet.create({
   row: {
@@ -18,20 +17,29 @@ const RefugeeHome = props => {
     <Row style={styles.row}>
       <HomeButton
         success
-        text="VIEW PROFILE"
+        text="MY PROFILE"
         onPress={() =>
           navigate('RefugeeProfile', {
-            profile: getRefugee(0)
+            id: 0
           })
         }
       />
       <HomeButton
-        success
+        primary
+        text="OTHER PROFILES"
+        onPress={() =>
+          navigate('ViewRefugees', {
+            id: 0
+          })
+        }
+      />
+      <HomeButton
+        warning
         text="CREATE PROJECT"
         onPress={() => navigate('RefugeeCreate')}
       />
       <HomeButton
-        success
+        danger
         text="VIEW PROJECTS"
         onPress={() => navigate('RefugeeProject')}
       />

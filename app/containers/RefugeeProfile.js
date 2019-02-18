@@ -1,9 +1,11 @@
 import React from 'react';
-import { Button, Form, Item, Input, Label, Text } from 'native-base';
+import { Button, Icon, Form, Item, Input, Label } from 'native-base';
 import { BackButton, NavigationHeader } from '../components';
+import { getRefugee } from '../config/FakeData';
 
 const RefugeeProfile = props => {
-  const { profile } = props.navigation.state.params;
+  const { id } = props.navigation.state.params;
+  const profile = getRefugee(id);
 
   return (
     <>
@@ -37,13 +39,6 @@ const RefugeeProfile = props => {
           <Input disabled value={profile.profession} />
         </Item>
       </Form>
-      <Button
-        full
-        success
-        onPress={() => props.navigation.navigate('RefugeeEditProf')}
-      >
-        <Text>Update Info</Text>
-      </Button>
     </>
   );
 };
@@ -51,8 +46,20 @@ const RefugeeProfile = props => {
 RefugeeProfile.navigationOptions = ({ navigation }) => ({
   header: (
     <NavigationHeader
-      title={`Profile #${navigation.state.params.profile.id}`}
+      title={`Profile #${navigation.state.params.id}`}
       left={<BackButton />}
+      right={
+        <Button
+          transparent
+          onPress={() =>
+            navigation.navigate('EditProfile', {
+              id: navigation.state.params.id
+            })
+          }
+        >
+          <Icon name="create" />
+        </Button>
+      }
     />
   )
 });

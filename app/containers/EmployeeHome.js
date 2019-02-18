@@ -16,7 +16,7 @@ const EmployeeHome = ({ navigation, ...props }) => {
       <HomeButton
         success
         text="REGISTER REFUGEES"
-        onPress={() => navigation.navigate('EmployeeRegister')}
+        onPress={() => navigation.navigate('RegisterRefugee')}
       />
       <HomeButton
         text="VIEW REFUGEES"
