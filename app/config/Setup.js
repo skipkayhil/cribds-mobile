@@ -1,6 +1,10 @@
 import * as Expo from 'expo';
 import React, { Component } from 'react';
+import configureStore from './configureStore';
+import { Provider } from 'react-redux';
 import AppNavigator from '../navigators/AppNavigator';
+
+const store = configureStore();
 
 export default class Setup extends Component {
   constructor() {
@@ -26,6 +30,10 @@ export default class Setup extends Component {
   }
 
   render() {
-    return this.state.isReady ? <AppNavigator /> : <Expo.AppLoading />;
+    return (
+      <Provider store={store}>
+        {this.state.isReady ? <AppNavigator /> : <Expo.AppLoading />}
+      </Provider>
+    );
   }
 }
