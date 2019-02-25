@@ -7,13 +7,12 @@ import ViewEmployee from '../containers/ViewEmployee';
 import ManageEmployee from '../containers/ManageEmployee';
 import AdministratorViewProject from '../containers/AdministratorViewProject';
 
-
 export default createStackNavigator(
   {
     AdministratorHome: AdministratorHome,
-    AdministratorRegister: RegisterEmployee,
-    AdministratorProjects: AdministrateProjects,
-    AdministratorEmployees: ListEmployees,
+    RegisterEmployee: RegisterEmployee,
+    ViewProjects: AdministrateProjects,
+    ViewEmployees: ListEmployees,
     AdministratorEmployeeView: ViewEmployee,
     AdministratorEditEmployee: ManageEmployee,
     AdministrateProjectDetail: AdministratorViewProject

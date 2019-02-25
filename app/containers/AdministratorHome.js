@@ -16,16 +16,16 @@ const AdministratorHome = props => {
       <HomeButton
         success
         text="REGISTER EMPLOYEE"
-        onPress={() => props.navigation.navigate('AdministratorRegister')}
+        onPress={() => props.navigation.navigate('RegisterEmployee')}
       />
       <HomeButton
         text="LIST EMPLOYEES"
-        onPress={() => props.navigation.navigate('AdministratorEmployees')}
+        onPress={() => props.navigation.navigate('ViewEmployees')}
       />
       <HomeButton
         warning
         text="LIST PROJECTS"
-        onPress={() => props.navigation.navigate('AdministratorProjects')}
+        onPress={() => props.navigation.navigate('ViewProjects')}
       />
     </Row>
   );

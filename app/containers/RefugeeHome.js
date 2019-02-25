@@ -18,20 +18,12 @@ const RefugeeHome = props => {
       <HomeButton
         success
         text="MY PROFILE"
-        onPress={() =>
-          navigate('RefugeeProfile', {
-            id: 0
-          })
-        }
+        onPress={() => navigate('RefugeeProfile', { id: 0 })}
       />
       <HomeButton
         primary
         text="OTHER PROFILES"
-        onPress={() =>
-          navigate('ViewRefugees', {
-            id: 0
-          })
-        }
+        onPress={() => navigate('ViewRefugees', { id: 0 })}
       />
       <HomeButton
         warning
