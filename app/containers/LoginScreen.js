@@ -108,7 +108,14 @@ export default class LoginScreen extends Component {
           <Button
             title={'Login'}
             style={styles.input}
-            onPress={() => this.onLogin()}
+            onPress={() =>
+              this.props.login(
+                this.props.navigation.navigate,
+                this.state.username,
+                this.state.password,
+                this.state.userType
+              )
+            }
           />
         </View>
       </View>

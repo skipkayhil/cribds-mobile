@@ -1,13 +1,28 @@
 import { combineReducers } from 'redux';
 
-// Don't use this it's a test...
-function _test_user(state = 'refugee', action) {
+function app(state = {}, action) {
   switch (action.type) {
     case 'LOGIN':
-      return action.payload.userType;
+      return {
+        ...state,
+        user: user(state.user, action)
+      };
     default:
       return state;
   }
 }
 
-export default combineReducers({ _test_user });
+function user(state, action) {
+  switch (action.type) {
+    case 'LOGIN':
+      return {
+        ...state,
+        id: action.payload.id,
+        userType: action.payload.userType
+      };
+    default:
+      return state;
+  }
+}
+
+export default combineReducers({ app });

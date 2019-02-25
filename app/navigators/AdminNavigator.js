@@ -1,5 +1,5 @@
 import { createStackNavigator } from 'react-navigation';
-import AdministratorHome from '../containers/AdministratorHome';
+import Home from '../containers/HomeConnected';
 import RegisterEmployee from '../containers/RegisterEmployee';
 import AdministrateProjects from '../containers/AdministrateProjects';
 import ListEmployees from '../containers/ListEmployees';
@@ -9,7 +9,7 @@ import AdministratorViewProject from '../containers/AdministratorViewProject';
 
 export default createStackNavigator(
   {
-    AdministratorHome: AdministratorHome,
+    AdministratorHome: Home,
     RegisterEmployee: RegisterEmployee,
     ViewProjects: AdministrateProjects,
     ViewEmployees: ListEmployees,

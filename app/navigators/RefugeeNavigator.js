@@ -1,5 +1,5 @@
 import { createStackNavigator } from 'react-navigation';
-import RefugeeHome from '../containers/RefugeeHome';
+import Home from '../containers/HomeConnected';
 import CreateProject from '../containers/CreateProject';
 import RefugeeViewProject from '../containers/RefugeeViewProject';
 import RefugeeProfile from '../containers/RefugeeProfile';
@@ -9,7 +9,7 @@ import ViewRefugees from '../containers/ViewRefugees';
 
 export default createStackNavigator(
   {
-    RefugeeHome: RefugeeHome,
+    RefugeeHome: Home,
     RefugeeProject: RefugeeViewProject,
     RefugeeCreate: CreateProject,
     RefugeeProfile: RefugeeProfile,
