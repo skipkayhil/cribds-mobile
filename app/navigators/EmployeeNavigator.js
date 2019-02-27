@@ -1,5 +1,5 @@
 import { createStackNavigator } from 'react-navigation';
-import Home from '../containers/HomeConnected';
+import Home from '../containers/Home';
 import PendingProjects from '../containers/PendingProjects';
 import AcceptedProjects from '../containers/AcceptedProjects';
 import ViewRefugees from '../containers/ViewRefugees';

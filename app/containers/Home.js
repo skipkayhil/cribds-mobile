@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
 import { Row } from 'native-base';
 import { NavigationHeader, HomeButton, HeaderPicker } from '../components';
 
@@ -55,4 +56,10 @@ Home.navigationOptions = ({ navigation }) => ({
   header: <NavigationHeader title="CRIBDS" right={<HeaderPicker />} />
 });
 
-export default Home;
+const mapStateToProps = state => {
+  return {
+    user: state.app.user
+  };
+};
+
+export default connect(mapStateToProps)(Home);

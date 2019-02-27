@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Alert, Button, TextInput, View, StyleSheet, Text } from 'react-native';
+import { connect } from 'react-redux';
+import { loginRequest } from '../actions';
 import { Picker, Icon } from 'native-base';
 // import fetcher from '../api/fetcher.js'
 
-export default class LoginScreen extends Component {
+class LoginScreen extends Component {
   constructor(props) {
     super(props);
 
@@ -122,6 +124,19 @@ export default class LoginScreen extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login: (navigate, username, password, userType) => {
+      dispatch(loginRequest(navigate, username, password, userType));
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(LoginScreen);
 
 const styles = StyleSheet.create({
   container: {
