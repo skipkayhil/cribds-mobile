@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { Row } from 'native-base';
-import { NavigationHeader, HomeButton, HeaderPicker } from '../components';
+import { NavigationHeader, HomeButton, LogoutButton } from '../components';
 
 const styles = StyleSheet.create({
   row: {
@@ -25,7 +25,7 @@ const getButtons = user =>
       { text: 'PENDING PROJECTS', route: 'EmployeePending', param: {} },
       { text: 'ACCEPTED PROJECTS', route: 'EmployeeAccepted', param: {} }
     ],
-    Admin: [
+    admin: [
       { text: 'REGISTER EMPLOYEE', route: 'RegisterEmployee', param: {} },
       { text: 'LIST EMPLOYEES', route: 'ViewEmployees', param: {} },
       { text: 'LIST PROJECTS', route: 'ViewProjects', params: {} }
@@ -53,7 +53,7 @@ const Home = props => {
 };
 
 Home.navigationOptions = ({ navigation }) => ({
-  header: <NavigationHeader title="CRIBDS" right={<HeaderPicker />} />
+  header: <NavigationHeader title="CRIBDS" right={<LogoutButton />} />
 });
 
 const mapStateToProps = state => {

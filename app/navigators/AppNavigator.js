@@ -8,7 +8,7 @@ const AppContainer = createAppContainer(
       Login: Login,
       Employee: EmployeeNavigator,
       Refugee: RefugeeNavigator,
-      Admin: AdminNavigator
+      admin: AdminNavigator
     },
     {
       initialRouteName: 'Login'

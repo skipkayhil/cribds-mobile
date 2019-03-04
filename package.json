@@ -11,12 +11,15 @@
     "@types/react": "^16.7.22",
     "@types/react-navigation": "^3.0.1",
     "expo": "^32.0.0",
+    "firebase": "^5.8.5",
     "native-base": "^2.10.0",
     "react": "16.5.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-32.0.0.tar.gz",
     "react-navigation": "^3.0.9",
-    "react-redux": "^6.0.1",
+    "react-redux": "^5.0.0",
+    "react-redux-firebase": "^2.2.6",
     "redux": "^4.0.1",
+    "redux-firestore": "^0.7.0",
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
