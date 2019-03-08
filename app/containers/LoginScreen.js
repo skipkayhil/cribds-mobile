@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
-import { loginRequest } from '../actions';
+import { loginRequest as login } from '../actions';
 import {
   Button,
   Picker,
@@ -13,21 +13,16 @@ import {
   Text
 } from 'native-base';
 import { Constants } from 'expo';
-// import fetcher from '../api/fetcher.js'
 
 class LoginScreen extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      username: '',
-      password: '',
-      userType: 'Refugee',
-      valid: false
-    };
-  }
+  state = {
+    username: '',
+    password: '',
+    userType: 'Refugee'
+  };
 
   render() {
+    const { username, password, userType } = this.state;
     return (
       <>
         <Form style={styles.form}>
@@ -39,7 +34,7 @@ class LoginScreen extends Component {
             <Label style={{ color: 'white' }}>Email</Label>
             <Input
               style={{ color: 'white' }}
-              value={this.state.username}
+              value={username}
               onChangeText={username => this.setState({ username })}
             />
           </Item>
@@ -47,7 +42,7 @@ class LoginScreen extends Component {
             <Label style={{ color: 'white' }}>Password</Label>
             <Input
               style={{ color: 'white' }}
-              value={this.state.password}
+              value={password}
               onChangeText={password => this.setState({ password })}
               secureTextEntry
             />
@@ -60,14 +55,16 @@ class LoginScreen extends Component {
             onPress={() =>
               this.props.login(
                 this.props.navigation.navigate,
-                this.state.username,
-                this.state.password,
-                this.state.userType
+                username,
+                password,
+                userType
               )
             }
           >
             <Text>LOGIN</Text>
           </Button>
+
+          <Text style={{ color: 'darkred' }}>{this.props.error}</Text>
 
           <ActivityIndicator
             style={{ opacity: this.props.fetching ? 1 : 0 }}
@@ -93,14 +90,13 @@ class LoginScreen extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => ({
-  login: (navigate, username, password, userType) => {
-    dispatch(loginRequest(navigate, username, password, userType));
-  }
-});
+const mapDispatchToProps = {
+  login
+};
 
 const mapStateToProps = state => ({
-  fetching: state.app.fetching
+  fetching: state.app.fetching,
+  error: state.app.error
 });
 
 export default connect(

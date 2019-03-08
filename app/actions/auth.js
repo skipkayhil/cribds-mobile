@@ -1,37 +1,27 @@
-import { fetching, fetchDone } from './fetch';
+import { fetching } from './fetch';
 
-export function loginRequest(navigate, username, password, userType) {
+export function loginRequest(navigate, username, password, userType, callback) {
   return (dispatch, getState, getFirebase) => {
-    console.log('DEV LOGIN = ' + __DEV__);
     if (username === '' && password === '') {
       dispatch(login(userType, 0));
-      navigate(userType);
-      return;
+      return navigate(userType);
     }
 
     dispatch(fetching());
-    const firebase = getFirebase();
 
+    const firebase = getFirebase();
     firebase
       .login({
         email: username,
         password: password
       })
-      .then(result => {
-        firebase
-          .auth()
-          .currentUser.getIdTokenResult()
-          .then(({ claims: { userType } }) => {
-            console.log(userType + ' LOGGED INTO FIREBASE');
-            dispatch(login(userType, result.uid));
-            navigate(userType);
-            dispatch(fetchDone());
-          });
+      .then(result => firebase.auth().currentUser.getIdTokenResult())
+      .then(({ claims: { userType } }) => {
+        console.log('Usertype: ' + userType);
+        dispatch(login(userType, firebase.auth().currentUser.uid));
+        navigate(userType);
       })
-      .catch(error => {
-        // TODO: update state with an error to display
-        dispatch(fetchDone());
-      });
+      .catch(error => dispatch(loginError(error.message)));
   };
 }
 
@@ -41,6 +31,15 @@ function login(userType, id) {
     payload: {
       userType,
       id
+    }
+  };
+}
+
+function loginError(error) {
+  return {
+    type: 'LOGIN_ERROR',
+    payload: {
+      error
     }
   };
 }

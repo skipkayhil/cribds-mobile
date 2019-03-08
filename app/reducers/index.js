@@ -2,12 +2,20 @@ import { combineReducers } from 'redux';
 import { firebaseReducer } from 'react-redux-firebase';
 import { firestoreReducer } from 'redux-firestore';
 
-function app(state = { fetching: false }, action) {
+function app(state = { fetching: false, error: '' }, action) {
   switch (action.type) {
     case 'LOGIN':
       return {
         ...state,
+        fetching: false,
+        error: '',
         user: user(state.user, action)
+      };
+    case 'LOGIN_ERROR':
+      return {
+        ...state,
+        fetching: false,
+        error: action.payload.error
       };
     case 'FETCHING':
       return {
