@@ -2,8 +2,8 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Home from '../containers/Home';
 import RegisterEmployee from '../containers/RegisterEmployee';
 import AdministrateProjects from '../containers/AdministrateProjects';
-import ListEmployees from '../containers/ListEmployees';
-import ViewEmployee from '../containers/ViewEmployee';
+import ViewEmployees from '../containers/ViewEmployees';
+import EmployeeProfile from '../containers/EmployeeProfile';
 import ManageEmployee from '../containers/ManageEmployee';
 import AdministratorViewProject from '../containers/AdministratorViewProject';
 
@@ -13,8 +13,8 @@ export default createAppContainer(
       AdministratorHome: Home,
       RegisterEmployee: RegisterEmployee,
       ViewProjects: AdministrateProjects,
-      ViewEmployees: ListEmployees,
-      AdministratorEmployeeView: ViewEmployee,
+      ViewEmployees: ViewEmployees,
+      EmployeeProfile: EmployeeProfile,
       AdministratorEditEmployee: ManageEmployee,
       AdministrateProjectDetail: AdministratorViewProject
     },
