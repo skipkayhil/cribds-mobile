@@ -13,13 +13,13 @@ const styles = StyleSheet.create({
 
 const getButtons = user =>
   ({
-    Refugee: [
+    refugee: [
       { text: 'MY PROFILE', route: 'RefugeeProfile', param: { id: user.id } },
       { text: 'OTHER PROFILES', route: 'ViewRefugees', param: { id: user.id } },
       { text: 'CREATE PROJECT', route: 'RefugeeCreate', param: {} },
       { text: 'VIEW PROJECTS', route: 'RefugeeProject', param: {} }
     ],
-    Employee: [
+    employee: [
       { text: 'REGISTER REFUGEES', route: 'RegisterRefugee', param: {} },
       { text: 'VIEW REFUGEES', route: 'EmployeeRefugees', param: {} },
       { text: 'PENDING PROJECTS', route: 'EmployeePending', param: {} },

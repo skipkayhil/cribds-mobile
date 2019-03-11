@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { compose } from 'redux';
 import { StyleSheet, ActivityIndicator } from 'react-native';
 import { connect } from 'react-redux';
-import { loginRequest as login } from '../actions';
+import { withFirebase } from 'react-redux-firebase';
+import { login, apiStart, apiError } from '../actions';
 import {
   Button,
   Picker,
@@ -18,7 +20,25 @@ class LoginScreen extends Component {
   state = {
     username: '',
     password: '',
-    userType: 'Refugee'
+    userType: 'refugee'
+  };
+
+  handleLogin = () => {
+    const { username, password, userType } = this.state;
+    const { firebase, login, apiStart, apiError } = this.props;
+
+    if (username === '' && password === '') {
+      return login(userType, 0);
+    }
+
+    apiStart();
+
+    firebase
+      .login({
+        email: username,
+        password: password
+      })
+      .catch(error => apiError(error.message));
   };
 
   render() {
@@ -50,16 +70,9 @@ class LoginScreen extends Component {
 
           <Button
             block
-            disabled={this.props.fetching}
+            disabled={this.props.loading}
             style={{ margin: 15 }}
-            onPress={() =>
-              this.props.login(
-                this.props.navigation.navigate,
-                username,
-                password,
-                userType
-              )
-            }
+            onPress={this.handleLogin}
           >
             <Text>LOGIN</Text>
           </Button>
@@ -67,7 +80,7 @@ class LoginScreen extends Component {
           <Text style={{ color: 'darkred' }}>{this.props.error}</Text>
 
           <ActivityIndicator
-            style={{ opacity: this.props.fetching ? 1 : 0 }}
+            style={{ opacity: this.props.loading ? 1 : 0 }}
             size="large"
             color="#ffffff"
           />
@@ -75,14 +88,14 @@ class LoginScreen extends Component {
         <Picker
           mode="dropdown"
           iosIcon={<Icon name="arrow-down" />}
-          selectedValue={this.state.userType}
+          selectedValue={userType}
           style={{ flexGrow: 0, minWidth: 50 }}
           onValueChange={(itemValue, itemIndex) =>
             this.setState({ userType: itemValue })
           }
         >
-          <Picker.Item label="Refugee" value="Refugee" />
-          <Picker.Item label="Employee" value="Employee" />
+          <Picker.Item label="Refugee" value="refugee" />
+          <Picker.Item label="Employee" value="employee" />
           <Picker.Item label="Admin" value="admin" />
         </Picker>
       </>
@@ -91,17 +104,22 @@ class LoginScreen extends Component {
 }
 
 const mapDispatchToProps = {
-  login
+  login,
+  apiStart,
+  apiError
 };
 
 const mapStateToProps = state => ({
-  fetching: state.app.fetching,
-  error: state.app.error
+  loading: state.app.api.loading,
+  error: state.app.api.error
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  withFirebase,
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
 )(LoginScreen);
 
 const styles = StyleSheet.create({

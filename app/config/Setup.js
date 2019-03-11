@@ -1,19 +1,13 @@
 import * as Expo from 'expo';
 import React, { Component } from 'react';
-import configureStore from './configureStore';
-import { Provider } from 'react-redux';
-import AppNavigator from '../navigators/AppNavigator';
+import { Root } from 'native-base';
+import { connect } from 'react-redux';
+import AppRouter from '../containers/AppRouter';
 
-const store = configureStore();
-
-export default class Setup extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      isReady: false
-    };
-  }
+class Setup extends Component {
+  state = {
+    isReady: false
+  };
 
   componentWillMount() {
     this.loadFonts();
@@ -30,10 +24,18 @@ export default class Setup extends Component {
   }
 
   render() {
-    return (
-      <Provider store={store}>
-        {this.state.isReady ? <AppNavigator /> : <Expo.AppLoading />}
-      </Provider>
+    return this.state.isReady && this.props.auth.isLoaded ? (
+      <Root>
+        <AppRouter />
+      </Root>
+    ) : (
+      <Expo.AppLoading />
     );
   }
 }
+
+const mapStateToProps = state => ({
+  auth: state.firebase.auth
+});
+
+export default connect(mapStateToProps)(Setup);
