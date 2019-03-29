@@ -5,7 +5,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { Button, Icon, Input, Form, Item, Label } from 'native-base';
 import { BackButton, NavigationHeader } from '../components';
 
-const RefugeeViewProjectDetails = props => {
+const ViewAcceptedProject = props => {
   return (
   <Form style={{ marginRight: 15 }}>
     <Item floatingLabel>
@@ -27,7 +27,7 @@ const RefugeeViewProjectDetails = props => {
   </Form>
 )};
 
-RefugeeViewProjectDetails.navigationOptions = ({ navigation }) => ({
+ViewAcceptedProject.navigationOptions = ({ navigation }) => ({
   header: <NavigationHeader title="Project Details" left={<BackButton />} />
 });
 
@@ -48,4 +48,4 @@ export default compose(
     { collection: 'refugees' }
   ]),
   connect(mapStateToProps)
-)(RefugeeViewProjectDetails);
+)(ViewAcceptedProject);
