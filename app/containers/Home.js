@@ -27,8 +27,7 @@ const getButtons = user =>
     ],
     admin: [
       { text: 'REGISTER EMPLOYEE', route: 'RegisterEmployee', param: {} },
-      { text: 'LIST EMPLOYEES', route: 'ViewEmployees', param: {} },
-      { text: 'LIST PROJECTS', route: 'ViewProjects', params: {} }
+      { text: 'LIST EMPLOYEES', route: 'ViewEmployees', param: {} }
     ]
   }[user.userType]);
 
