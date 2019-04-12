@@ -1,24 +1,49 @@
 import React from 'react';
-import { Button, Content, Icon, List, ListItem, Text } from 'native-base';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import {
+  Button,
+  Content,
+  Icon,
+  List,
+  ListItem,
+  Text,
+  Body,
+  Right
+} from 'native-base';
 import { NavigationHeader, BackButton } from '../components';
-import { getAll } from '../config/FakeData';
 
 const ViewRefugees = props => {
-  const { id } = props.navigation.state.params || {};
+  const { uid } = props.navigation.state.params || {};
 
   return (
     <Content>
       <List>
-        {getAll()
-          .filter(v => v.id !== id)
+        {props.refugees
+          .filter(v => v.id !== uid)
           .map((v, i) => (
             <ListItem
               key={i}
               onPress={() =>
-                props.navigation.navigate('RefugeeProfile', { id: v.id })
+                props.navigation.navigate('RefugeeProfile', { uid: v.id })
               }
             >
-              <Text>{v.name}</Text>
+              <Body>
+                <Text style={{ fontSize: 16, color: '#000000de' }}>
+                  {v.first_name} {v.last_name}
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 14,
+                    color: '#00000099',
+                    paddingTop: 6
+                  }}
+                >
+                  ID: {v.id}
+                </Text>
+              </Body>
+              <Right />
             </ListItem>
           ))}
       </List>
@@ -40,4 +65,11 @@ ViewRefugees.navigationOptions = ({ navigation }) => ({
   )
 });
 
-export default ViewRefugees;
+const mapStateToProps = state => ({
+  refugees: state.firestore.ordered.refugees || []
+});
+
+export default compose(
+  firestoreConnect(['refugees']),
+  connect(mapStateToProps)
+)(ViewRefugees);
