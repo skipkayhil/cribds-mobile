@@ -15,7 +15,7 @@ export default createAppContainer(
       EmployeePending: PendingProjects,
       EmployeeAccepted: AcceptedProjects,
       EmployeeRefugees: ViewRefugees,
-      RefugeeProfile: RefugeeProfile,
+      RefugeeProfile: { screen: RefugeeProfile, params: { editable: true } },
       EditProfile: { screen: RefugeeProfileForm, params: { create: false } },
       RegisterRefugee: { screen: RefugeeProfileForm, params: { create: true } },
       EmployeeViewAcceptedProject: ViewAcceptedProject,

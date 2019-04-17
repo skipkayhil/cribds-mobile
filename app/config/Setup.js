@@ -1,5 +1,7 @@
 import * as Expo from 'expo';
 import React, { Component } from 'react';
+import { compose } from 'redux';
+import { withFirestore } from 'react-redux-firebase';
 import { Root } from 'native-base';
 import { connect } from 'react-redux';
 import AppRouter from '../containers/AppRouter';
@@ -11,6 +13,11 @@ class Setup extends Component {
 
   componentWillMount() {
     this.loadFonts();
+  }
+
+  componentDidMount() {
+    this.props.firestore.get('camps');
+    this.props.firestore.get('towns');
   }
 
   async loadFonts() {
@@ -38,4 +45,7 @@ const mapStateToProps = state => ({
   auth: state.firebase.auth
 });
 
-export default connect(mapStateToProps)(Setup);
+export default compose(
+  withFirestore,
+  connect(mapStateToProps)
+)(Setup);

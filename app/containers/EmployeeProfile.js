@@ -5,7 +5,7 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { Button, Icon, Input, Form, Item, Label } from 'native-base';
 import { BackButton, NavigationHeader } from '../components';
 
-const ViewEmployee = props => (
+const EmployeeProfile = props => (
   <Form style={{ marginRight: 15 }}>
     <Item floatingLabel>
       <Label>Email</Label>
@@ -13,7 +13,7 @@ const ViewEmployee = props => (
     </Item>
   </Form>
 );
-ViewEmployee.navigationOptions = ({ navigation }) => ({
+EmployeeProfile.navigationOptions = ({ navigation }) => ({
   header: (
     <NavigationHeader
       title="Employee Profile"
@@ -46,4 +46,4 @@ export default compose(
     { collection: 'employees', doc: props.navigation.state.params.uid }
   ]),
   connect(mapStateToProps)
-)(ViewEmployee);
+)(EmployeeProfile);
