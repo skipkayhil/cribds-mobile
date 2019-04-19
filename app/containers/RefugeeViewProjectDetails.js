@@ -14,15 +14,27 @@ const RefugeeViewProjectDetails = props => {
     </Item>
     <Item floatingLabel>
       <Label>Creator:</Label>
-      <Input disabled value={props.refugee.name} />
+      <Input disabled value={props.refugee.first_name + " " + props.refugee.last_name} />
     </Item>
     <Item floatingLabel>
-      <Label>Camp:</Label>
-      <Input disabled value={props.project.camp} />
+      <Label>Project Type:</Label>
+      <Input disabled value={props.type.name} />
+    </Item>
+    <Item floatingLabel>
+      <Label>Submitted:</Label>
+      <Input disabled value={props.project.submission_date.toString()} />
+    </Item>
+    <Item floatingLabel>
+      <Label>Funding Requested:</Label>
+      <Input disabled value={props.project.funds_needed + ""} />
+    </Item>
+    <Item floatingLabel>
+      <Label>Funding Recieved:</Label>
+      <Input disabled value={props.project.funds_acquired + ""} />
     </Item>
     <Item floatingLabel>
       <Label>Details:</Label>
-      <Input disabled value={props.project.details} />
+      <Input disabled value={props.project.description} />
     </Item>
   </Form>
 )};
@@ -40,12 +52,16 @@ const mapStateToProps = (state, props) => {
     refugee: (state.firestore.data.refugees && project &&
         state.firestore.data.refugees[project.creator]) ||
       {},
+    type: (state.firestore.data.project_types && project &&
+        state.firestore.data.project_types[project.project_type]) ||
+      {},
 })};
 
 export default compose(
   firestoreConnect(props => [
     { collection: 'projects', doc: props.navigation.state.params.uid },
-    { collection: 'refugees' }
+    { collection: 'refugees' },
+    { collection: 'project_types' }
   ]),
   connect(mapStateToProps)
 )(RefugeeViewProjectDetails);
