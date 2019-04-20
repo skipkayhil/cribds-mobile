@@ -2,7 +2,7 @@ import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import { Button, Icon, Input, Form, Item, Label } from 'native-base';
+import { Button, Icon, Input, Form, Item, Label, Text } from 'native-base';
 import { BackButton, NavigationHeader } from '../components';
 
 const RefugeeViewProjectDetails = props => {
@@ -22,7 +22,7 @@ const RefugeeViewProjectDetails = props => {
     </Item>
     <Item floatingLabel>
       <Label>Submitted:</Label>
-      <Input disabled value={props.project.submission_date.toString()} />
+      <Input disabled value={props.project.submission_date.toDate() + ""} />
     </Item>
     <Item floatingLabel>
       <Label>Funding Requested:</Label>
@@ -34,8 +34,9 @@ const RefugeeViewProjectDetails = props => {
     </Item>
     <Item floatingLabel>
       <Label>Details:</Label>
-      <Input disabled value={props.project.description} />
+      <Input disabled/>
     </Item>
+    <Text> {props.project.description} </Text>
   </Form>
 )};
 
