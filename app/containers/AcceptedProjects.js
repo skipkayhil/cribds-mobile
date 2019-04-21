@@ -28,14 +28,14 @@ AcceptedProjects.navigationOptions = ({ navigation }) => {
   };
 };
 
-const mapStateToProps = state => ({
-  projects: (state.firestore.ordered.projects['storeHere']) || []
+const mapStateToProps = (state, props) => ({
+  projects: (state.firestore.ordered['acceptedProjects']) || []
 });
 
 export default compose(
   firestoreConnect(props => [
     {collection: 'projects', where: ['status', '==', 'approved'],
-    storeAs: 'storeHere'}
+    storeAs: 'acceptedProjects'}
 
     ]),
   connect(mapStateToProps)

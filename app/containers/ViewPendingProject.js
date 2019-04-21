@@ -5,6 +5,13 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { Button, Icon, Input, Form, Item, Label, Text } from 'native-base';
 import { BackButton, NavigationHeader } from '../components';
 
+onAccept = (props) => {
+  const proj = props.project;
+  proj.status = 'approved';
+  props.firestore.set({collection: 'projects', doc:props.navigation.state.params.uid}, proj)
+
+};
+
 const ViewPendingProject = props => {
   return (
   <Form style={{ marginRight: 15 }}>
@@ -37,6 +44,11 @@ const ViewPendingProject = props => {
       <Input disabled/>
     </Item>
     <Text> {props.project.description} </Text>
+    <Button full success onPress={onAccept(props)}>
+      <Text>
+        {'Approve Project'}
+      </Text>
+    </Button>
   </Form>
 )};
 
@@ -55,7 +67,7 @@ const mapStateToProps = (state, props) => {
       {},
     type: (state.firestore.data.project_types && project &&
         state.firestore.data.project_types[project.project_type]) ||
-      {},
+      {}
 })};
 
 export default compose(
