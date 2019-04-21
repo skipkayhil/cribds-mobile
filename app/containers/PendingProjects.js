@@ -34,6 +34,7 @@ const mapStateToProps = state => ({
 
 export default compose(
   firestoreConnect(props => [
+    {collection: 'projects'},
     {collection: 'projects', where: ['status', '==', 'pending'],
     storeAs: 'pendingProjects'}
 
