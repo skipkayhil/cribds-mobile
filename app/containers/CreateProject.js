@@ -20,13 +20,21 @@ class CreateProject extends React.Component {
   onSubmit = () => {
     const {title, details, funds, contact, image} = this.state;
     const {navigation, firestore, uid} = this.props;
-  
-    firestore.add({collection:'projects'},{creator: uid, title, description: details, funds_acquired: 0, funds_needed: funds, project_type: 
-      'ryMc3AcabTo0Vg31stqh', status: 'pending', submission_date: new Date()})//.then(
+    if (title == '' || details == '' || funds == 0) {
+      alert('Please fill in all required information');
+    }
+    else {
+      if (contact != '') {
+        firestore.add({collection:'projects'},{creator: uid, title, description: details + " Contact: " + contact, funds_acquired: 0, funds_needed: funds, project_type: 
+        'ryMc3AcabTo0Vg31stqh', status: 'pending', submission_date: new Date()});
+      } else {
+      firestore.add({collection:'projects'},{creator: uid, title, description: details, funds_acquired: 0, funds_needed: funds, project_type: 
+        'ryMc3AcabTo0Vg31stqh', status: 'pending', submission_date: new Date()});//.then(
+      }
       //project => 
       //uploadImageAsync(uri,test.id)
-      //navigation('Home'))
-    //navigation.navigate('Home')
+      this.props.navigation.navigate('RefugeeHome');
+    }
 
     
   };
@@ -68,21 +76,13 @@ class CreateProject extends React.Component {
           </Item>
 
           <Item floatingLabel style={styles.input}>
-            <Label style={{ color: 'white' }}>Contact:</Label>
+            <Label style={{ color: 'white' }}>Contact (optional):</Label>
             <Input
               style={{ color: 'white' }}
               value={contact}
               onChangeText={contact => this.setState({ contact })}
             />
           </Item>
-            <Button
-            onPress={this._pickImage}
-            style={{ margin: 15 }}
-            >
-              <Text> Pick Image </Text>
-            </Button>
-            {image &&
-              <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
 
           <Button
             style={{ margin: 15 }}
@@ -94,6 +94,17 @@ class CreateProject extends React.Component {
     </Content>
     
   );}
+
+  /* TO BE ADDED IN
+            <Button
+            onPress={this._pickImage}
+            style={{ margin: 15 }}
+            >
+              <Text> Pick Image </Text>
+            </Button>
+            {image &&
+              <Image source={{ uri: image }} style={{ width: 200, height: 200 }} />}
+  */
 
   _pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
