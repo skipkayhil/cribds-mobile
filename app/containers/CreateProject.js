@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Text, Input, Label, Form, Item, Content} from 'native-base';
 import { TextInput, View, Image, StyleSheet, ActivityIndicator, Keyboard } from 'react-native';
 import { NavigationHeader, BackButton } from '../components';
-import { ImagePicker, Constants } from 'expo';
+import { ImagePicker, Constants, Permissions } from 'expo';
 import { withFirestore } from 'react-redux-firebase';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
@@ -22,10 +22,11 @@ class CreateProject extends React.Component {
     const {navigation, firestore, uid} = this.props;
   
     firestore.add({collection:'projects'},{creator: uid, title, description: details, funds_acquired: 0, funds_needed: funds, project_type: 
-      'ryMc3AcabTo0Vg31stqh', status: 'pending', submission_date: new Date()}).then(
-      project => 
-      console.log(test.id)
-      )
+      'ryMc3AcabTo0Vg31stqh', status: 'pending', submission_date: new Date()})//.then(
+      //project => 
+      //uploadImageAsync(uri,test.id)
+      //navigation('Home'))
+    //navigation.navigate('Home')
 
     
   };
@@ -108,6 +109,36 @@ class CreateProject extends React.Component {
   };
 }
 
+async function uploadImageAsync(uri, project_name) {
+  // Why are we using XMLHttpRequest? See:
+  // https://github.com/expo/expo/issues/2402#issuecomment-443726662
+  const blob = await new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.onload = function() {
+      resolve(xhr.response);
+    };
+    xhr.onerror = function(e) {
+      console.log(e);
+      reject(new TypeError('Network request failed'));
+    };
+    xhr.responseType = 'blob';
+    xhr.open('GET', uri, true);
+    xhr.send(null);
+  });
+
+  const ref = firebase
+    .storage()
+    .ref()
+    .child('project_images')
+    .child(project_name);
+  const snapshot = await ref.put(blob);
+
+  // We're done with the blob, close and release it
+  blob.close();
+
+  return await snapshot.ref.getDownloadURL();
+}
+
 const styles = StyleSheet.create({
   form: {
     backgroundColor: '#0098fe',
@@ -124,7 +155,6 @@ const styles = StyleSheet.create({
 const mapStateToProps = ({ firebase }, {firestore: data},  props) => {
   return {
     uid: firebase.auth.uid,
-    types: project_types
   };
 };
 
