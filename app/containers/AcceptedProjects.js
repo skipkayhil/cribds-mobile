@@ -1,33 +1,43 @@
 import React from 'react';
-import { Content, List, ListItem, Text } from 'native-base';
-import { NavigationHeader, BackButton } from '../components';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { Text, Content, List, ListItem } from 'native-base';
+import { BackButton, NavigationHeader } from '../components';
 
-const AcceptedProjects = props => {
-  return (
-    <Content>
-      <List>
-        <ListItem button>
-          <Text>Accepted Project 1</Text>
+const AcceptedProjects = props => (
+  <Content>
+    <List>
+      {props.projects.map((v, i) => (
+        <ListItem
+          key={i}
+          onPress={() =>
+            props.navigation.navigate('EmployeeViewAcceptedProject', { uid: v.id })
+          }
+        >
+          <Text>{v.title}</Text>
         </ListItem>
-        <ListItem>
-          <Text>Accepted Project 2</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Accepted Project 3</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Accepted Project 4</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Accepted Project 5</Text>
-        </ListItem>
-      </List>
-    </Content>
-  );
+      ))}
+    </List>
+  </Content>
+);
+
+AcceptedProjects.navigationOptions = ({ navigation }) => {
+  return {
+    header: <NavigationHeader title="Accepted Projects" left={<BackButton />} />
+  };
 };
 
-AcceptedProjects.navigationOptions = ({ navigation }) => ({
-  header: <NavigationHeader left={<BackButton />} title="Accepted Projects" />
+const mapStateToProps = (state, props) => ({
+  projects: (state.firestore.ordered['acceptedProjects']) || []
 });
 
-export default AcceptedProjects;
+export default compose(
+  firestoreConnect(props => [
+    {collection: 'projects'},
+    {collection: 'projects', where: ['status', '==', 'approved'],
+    storeAs: 'acceptedProjects'}
+
+    ]),
+  connect(mapStateToProps)
+)(AcceptedProjects);
