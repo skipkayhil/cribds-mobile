@@ -5,6 +5,8 @@ import AcceptedProjects from '../containers/AcceptedProjects';
 import ViewRefugees from '../containers/ViewRefugees';
 import RefugeeProfile from '../containers/RefugeeProfile';
 import RefugeeProfileForm from '../containers/RefugeeProfileForm';
+import ViewAcceptedProject from '../containers/ViewAcceptedProject';
+import ViewPendingProject from '../containers/ViewPendingProject';
 
 export default createAppContainer(
   createStackNavigator(
@@ -15,7 +17,9 @@ export default createAppContainer(
       EmployeeRefugees: ViewRefugees,
       RefugeeProfile: { screen: RefugeeProfile, params: { editable: true } },
       EditProfile: { screen: RefugeeProfileForm, params: { create: false } },
-      RegisterRefugee: { screen: RefugeeProfileForm, params: { create: true } }
+      RegisterRefugee: { screen: RefugeeProfileForm, params: { create: true } },
+      EmployeeViewAcceptedProject: ViewAcceptedProject,
+      EmployeeViewPendingProject: ViewPendingProject
     },
     {
       initialRouteName: 'EmployeeHome'
