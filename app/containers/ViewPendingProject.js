@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { firestoreConnect } from 'react-redux-firebase';
-import { Button, Icon, Input, Form, Item, Label, Text } from 'native-base';
+import { Button, Icon, Input, Form, Item, Label, Text, Content } from 'native-base';
 import { BackButton, NavigationHeader } from '../components';
 
 
@@ -26,6 +26,7 @@ class ViewPendingProject extends Component {
   render() {
     const { project, refugee, type} = this.state;
     return (
+    <Content>
     <Form style={{ marginRight: 15 }}>
       <Item floatingLabel>
         <Label>Title:</Label>
@@ -62,12 +63,13 @@ class ViewPendingProject extends Component {
         </Text>
       </Button>
 
-      <Button full success onPress={this.onReject}>
+      <Button full danger onPress={this.onReject}>
         <Text>
           {'Reject Project'}
         </Text>
       </Button>
     </Form>
+    </Content>
 )}};
 
 ViewPendingProject.navigationOptions = ({ navigation }) => ({
