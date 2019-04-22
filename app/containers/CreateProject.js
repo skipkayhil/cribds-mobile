@@ -21,10 +21,10 @@ class CreateProject extends React.Component {
     const {title, details, funds, contact, image} = this.state;
     const {navigation, firestore, uid} = this.props;
   
-    firestore.add({collection:'projects'},{creator: uid, title, description: details, fund_acquired: 0, funds_needed: funds, project_type: 
+    firestore.add({collection:'projects'},{creator: uid, title, description: details, funds_acquired: 0, funds_needed: funds, project_type: 
       'ryMc3AcabTo0Vg31stqh', status: 'pending', submission_date: new Date()}).then(
       project => 
-      constant projID = test.id
+      console.log(test.id)
       )
 
     
@@ -121,9 +121,10 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = ({ firebase }, props) => {
+const mapStateToProps = ({ firebase }, {firestore: data},  props) => {
   return {
     uid: firebase.auth.uid,
+    types: project_types
   };
 };
 
