@@ -1,33 +1,43 @@
 import React from 'react';
-import { Content, List, ListItem, Text } from 'native-base';
-import { NavigationHeader, BackButton } from '../components';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import { Text, Content, List, ListItem } from 'native-base';
+import { BackButton, NavigationHeader } from '../components';
 
-const PendingProjects = props => {
-  return (
-    <Content>
-      <List>
-        <ListItem button>
-          <Text>Test Project 1</Text>
+const PendingProjects = props => (
+  <Content>
+    <List>
+      {props.projects.map((v, i) => (
+        <ListItem
+          key={i}
+          onPress={() =>
+            props.navigation.navigate('EmployeeViewPendingProject', { uid: v.id })
+          }
+        >
+          <Text>{v.title}</Text>
         </ListItem>
-        <ListItem>
-          <Text>Test Project 2</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Test Project 3</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Test Project 4</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Test Project 5</Text>
-        </ListItem>
-      </List>
-    </Content>
-  );
+      ))}
+    </List>
+  </Content>
+);
+
+PendingProjects.navigationOptions = ({ navigation }) => {
+  return {
+    header: <NavigationHeader title="Pending Projects" left={<BackButton />} />
+  };
 };
 
-PendingProjects.navigationOptions = ({ navigation }) => ({
-  header: <NavigationHeader left={<BackButton />} title="Pending Projects" />
+const mapStateToProps = state => ({
+  projects: state.firestore.ordered['pendingProjects'] || []
 });
 
-export default PendingProjects;
+export default compose(
+  firestoreConnect(props => [
+    {collection: 'projects'},
+    {collection: 'projects', where: ['status', '==', 'pending'],
+    storeAs: 'pendingProjects'}
+
+  ]),
+  connect(mapStateToProps)
+)(PendingProjects);
