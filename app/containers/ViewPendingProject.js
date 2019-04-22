@@ -15,12 +15,13 @@ class ViewPendingProject extends Component {
 
   onAccept = (props) => {
     this.props.firestore.update({collection: 'projects', doc:this.props.navigation.state.params.uid}, {status: 'approved'});
+    this.props.navigation.navigate('EmployeeHome');
 
   };
 
   onReject = (props) => {
     this.props.firestore.update({collection: 'projects', doc:this.props.navigation.state.params.uid}, {status: 'rejected'});
-
+    this.props.navigation.navigate('EmployeeHome');
   };
 
   render() {

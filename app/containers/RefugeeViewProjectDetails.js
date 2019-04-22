@@ -26,11 +26,11 @@ const RefugeeViewProjectDetails = props => {
     </Item>
     <Item floatingLabel>
       <Label>Funding Requested:</Label>
-      <Input disabled value={props.project.funds_needed + ""} />
+      <Input disabled value={props.project.funds_needed + ' '} />
     </Item>
     <Item floatingLabel>
       <Label>Funding Recieved:</Label>
-      <Input disabled value={props.project.funds_acquired + ""} />
+      <Input disabled value={props.project.funds_acquired + ' '} />
     </Item>
     <Item floatingLabel>
       <Label>Details:</Label>
