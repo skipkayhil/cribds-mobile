@@ -1,26 +1,51 @@
 import React from 'react';
-import { Button, Content, Icon, List, ListItem, Text } from 'native-base';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { firestoreConnect } from 'react-redux-firebase';
+import {
+  Button,
+  Content,
+  Icon,
+  List,
+  ListItem,
+  Text,
+  Body,
+  Right
+} from 'native-base';
 import { NavigationHeader, BackButton } from '../components';
 
 const ViewRefugees = props => {
+  const { uid } = props.navigation.state.params || {};
+
   return (
     <Content>
       <List>
-        <ListItem button>
-          <Text>John Smith</Text>
-        </ListItem>
-        <ListItem>
-          <Text>James White</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Jim Brown</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Jack Green</Text>
-        </ListItem>
-        <ListItem>
-          <Text>Jed Black</Text>
-        </ListItem>
+        {props.refugees
+          .filter(v => v.id !== uid)
+          .map((v, i) => (
+            <ListItem
+              key={i}
+              onPress={() =>
+                props.navigation.navigate('RefugeeProfile', { uid: v.id })
+              }
+            >
+              <Body>
+                <Text style={{ fontSize: 16, color: '#000000de' }}>
+                  {v.first_name} {v.last_name}
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 14,
+                    color: '#00000099',
+                    paddingTop: 6
+                  }}
+                >
+                  ID: {v.id}
+                </Text>
+              </Body>
+              <Right />
+            </ListItem>
+          ))}
       </List>
     </Content>
   );
@@ -34,10 +59,17 @@ ViewRefugees.navigationOptions = ({ navigation }) => ({
           <Icon name="search" />
         </Button>
       }
-      left={<BackButton navigation={navigation} />}
+      left={<BackButton />}
       title="View Refugees"
     />
   )
 });
 
-export default ViewRefugees;
+const mapStateToProps = state => ({
+  refugees: state.firestore.ordered.refugees || []
+});
+
+export default compose(
+  firestoreConnect(['refugees']),
+  connect(mapStateToProps)
+)(ViewRefugees);

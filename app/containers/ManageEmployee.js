@@ -40,12 +40,7 @@ const ManageEmployee = props => {
 };
 
 ManageEmployee.navigationOptions = ({ navigation }) => ({
-  header: (
-    <NavigationHeader
-      title="Employee Name"
-      left={<BackButton navigation={navigation} />}
-    />
-  )
+  header: <NavigationHeader title="Employee Name" left={<BackButton />} />
 });
 
 export default ManageEmployee;

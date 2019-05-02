@@ -1,26 +1,14 @@
 import React from 'react';
-import { createSwitchNavigator, createAppContainer } from 'react-navigation';
-import LoginScreen from './app/containers/LoginScreen';
-import EmployeeNavigator from './app/navigators/EmployeeNavigator';
-import RefugeeNavigator from './app/navigators/RefugeeNavigator';
-import AdministratorNavigator from './app/navigators/AdministratorNavigator';
+import { Provider } from 'react-redux';
+import configureStore from './app/config/configureStore';
+import Setup from './app/config/Setup';
 
-const AppContainer = createAppContainer(
-  createSwitchNavigator(
-    {
-      Login: LoginScreen,
-      Employee: EmployeeNavigator,
-      Refugee: RefugeeNavigator,
-      Admin: AdministratorNavigator
-    },
-    {
-      initialRouteName: 'Login'
-    }
-  )
+const store = configureStore();
+
+const App = props => (
+  <Provider store={store}>
+    <Setup />
+  </Provider>
 );
 
-export default class App extends React.Component {
-  render() {
-    return <AppContainer />;
-  }
-}
+export default App;

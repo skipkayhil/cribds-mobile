@@ -5,33 +5,33 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { Text, Content, List, ListItem } from 'native-base';
 import { BackButton, NavigationHeader } from '../components';
 
-const RefugeeViewProject = props => (
+const ListEmployees = props => (
   <Content>
     <List>
-      {props.projects.map((v, i) => (
+      {props.employees.map((v, i) => (
         <ListItem
           key={i}
           onPress={() =>
-            props.navigation.navigate('RefugeeProjectDetails', { uid: v.id })
+            props.navigation.navigate('EmployeeProfile', { uid: v.id })
           }
         >
-          <Text>{v.title}</Text>
+          <Text>{v.email}</Text>
         </ListItem>
       ))}
     </List>
   </Content>
 );
-RefugeeViewProject.navigationOptions = ({ navigation }) => {
+ListEmployees.navigationOptions = ({ navigation }) => {
   return {
-    header: <NavigationHeader title="Project List" left={<BackButton />} />
+    header: <NavigationHeader title="List of Employees" left={<BackButton />} />
   };
 };
 
 const mapStateToProps = state => ({
-  projects: state.firestore.ordered.projects || []
+  employees: state.firestore.ordered.employees || []
 });
 
 export default compose(
-  firestoreConnect(['projects']),
+  firestoreConnect(['employees']),
   connect(mapStateToProps)
-)(RefugeeViewProject);
+)(ListEmployees);
